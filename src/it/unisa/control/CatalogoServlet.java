@@ -27,15 +27,27 @@ public class CatalogoServlet extends HttpServlet {
 		String sort = request.getParameter("sort");
 		String action = request.getParameter("action");
 		String redirectedPage = request.getParameter("page");;
-	
+		String input = request.getParameter("inputName");
+		if (input != null) {
+		    input = input.trim();
+		}
+
 		try {
 			if(action!=null) {
+				String inputString = request.getParameter("inputName");
+				if (input != null) {
+				    input = input.trim();
+				} else {
+				    // Gestire il caso in cui il parametro "inputName" sia nullo
+				}
+
 				if(action.equalsIgnoreCase("add")) {
+					
 					bean.setNome(request.getParameter("nome"));
 					bean.setDescrizione(request.getParameter("descrizione"));
 					bean.setIva(request.getParameter("iva"));
 					bean.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
-					bean.setQuantit‡(Integer.parseInt(request.getParameter("quantit‡")));
+					bean.setQuantita(Integer.parseInt(request.getParameter("quantit√†")));
 					bean.setPiattaforma(request.getParameter("piattaforma"));
 					bean.setGenere(request.getParameter("genere"));
 					bean.setImmagine(request.getParameter("img"));
@@ -52,7 +64,7 @@ public class CatalogoServlet extends HttpServlet {
 					bean.setDescrizione(request.getParameter("descrizione"));
 					bean.setIva(request.getParameter("iva"));
 					bean.setPrezzo(Double.parseDouble(request.getParameter("prezzo")));
-					bean.setQuantit‡(Integer.parseInt(request.getParameter("quantit‡")));
+					bean.setQuantita(Integer.parseInt(request.getParameter("quantit√†")));
 					bean.setPiattaforma(request.getParameter("piattaforma"));
 					bean.setGenere(request.getParameter("genere"));
 					bean.setImmagine(request.getParameter("img"));

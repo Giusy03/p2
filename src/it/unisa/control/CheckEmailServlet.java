@@ -16,13 +16,13 @@ import it.unisa.model.UserBean;
 import it.unisa.model.UserDao;
 
 /**
- * Servlet implementation class CheckEmailServlet
+ * Servlet implementation class CheckUsernameServlet
  */
-@WebServlet("/CheckEmail")
-public class CheckEmailServlet extends HttpServlet {
+@WebServlet("/CheckUsername")
+public class CheckUsernameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
@@ -30,25 +30,27 @@ public class CheckEmailServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*response.setContentType("application/json");
+	/*	response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");*/
 		
 		UserDao dao = new UserDao();
-		String email = request.getParameter("em");
+		String us = request.getParameter("us");
 		
 		ArrayList<UserBean> users;
 		try {
 			users = dao.doRetrieveAll(null);
 			for(UserBean user: users) {
-				if(user.getEmail().equals(email)){
-					//String json = new Gson().toJson("not valid");
-					//response.getWriter().write(json);
+				if(user.getUsername().equals(us)){
+					/*String json = new Gson().toJson("not valid");
+					response.getWriter().write(json);*/
 					response.getWriter().write("0");
 					return;
 				}
 		}
-			//String json = new Gson().toJson("valid");
+		/*	String json = new Gson().toJson("valid");
+			response.getWriter().write(json);*/
 			response.getWriter().write("1");
+
 			return;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
