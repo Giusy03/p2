@@ -63,7 +63,26 @@ public class MetodoPagamentoDao implements MetodoPagamentoDaoInterfaccia{
 		}
 	}
 
-	
+	import java.security.MessageDigest;
+	import java.security.NoSuchAlgorithmException;
+
+	public class EncryptionUtil {
+	    public static String encryptPassword(String password) {
+	        try {
+	            MessageDigest md = MessageDigest.getInstance("SHA-256");
+	            byte[] hashBytes = md.digest(password.getBytes());
+	            StringBuilder sb = new StringBuilder();
+	            for (byte b : hashBytes) {
+	                sb.append(String.format("%02x", b));
+	            }
+	            return sb.toString();
+	        } catch (NoSuchAlgorithmException e) {
+	            e.printStackTrace();
+	            return null; // Gestione dell'errore
+	        }
+	    }
+	}
+
 	@Override
 	public synchronized MetodoPagamentoBean doRetrieveByKey(String numeroCarta) throws SQLException {
 		Connection connection = null;
